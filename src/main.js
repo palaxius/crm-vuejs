@@ -1,20 +1,22 @@
 import Vue from "vue";
 import Vuelidate from "vuelidate/src";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
 import dateFilter from "@/filters/date.filter";
+import currencyFilter from "@/filters/currency.filter";
+import App from "./App.vue";
 import messagePlugin from "@/utils/message.plugin";
 import Loader from "@/components/app/Loader";
+import store from "./store";
+import router from "./router";
+import firebase from "firebase";
 import "./registerServiceWorker";
 import "materialize-css/dist/js/materialize.min";
-import firebase from "firebase";
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuelidate);
 Vue.use(messagePlugin);
 Vue.filter("date", dateFilter);
+Vue.filter("currency", currencyFilter);
 Vue.component("Loader", Loader);
 
 firebase.initializeApp({
