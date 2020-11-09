@@ -3,17 +3,17 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Сумма</th>
-        <th>Дата</th>
-        <th>Категория</th>
-        <th>Тип</th>
-        <th>Открыть</th>
+        <th>{{ "Amount" | localize }}</th>
+        <th>{{ "Date" | localize }}</th>
+        <th>{{ "Description" | localize }}</th>
+        <th>{{ "Category" | localize }}</th>
+        <th>{{ "Open" | localize }}</th>
       </tr>
     </thead>
 
     <tbody>
       <tr v-for="(record, idx) in records" :key="record.id">
-        <td>{{ records.length - idx }}</td>
+        <td>{{ idx + 1 }}</td>
         <td>{{ record.amount | currency("RUB") }}</td>
         <td>{{ record.date | date("date") }}</td>
         <td>{{ record.categoryName }}</td>
@@ -24,7 +24,7 @@
         </td>
         <td>
           <button
-            v-tooltip="'Посмотреть запись'"
+            v-tooltip="'OpenRecord'"
             data-position="top"
             class="btn-small btn"
             @click="$router.push('/detail/' + record.id)"

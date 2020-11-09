@@ -4,7 +4,7 @@
     <div class="app-main-layout" v-else>
       <Navbar @clickHandler="isOpen = !isOpen" />
 
-      <Sidebar v-model="isOpen" />
+      <Sidebar v-model="isOpen" :key="locale + isOpen" />
 
       <main class="app-content" :class="{ full: !isOpen }">
         <div class="app-page">
@@ -12,11 +12,11 @@
         </div>
       </main>
 
-      <div class="fixed-action-btn">
+      <div class="fixed-action-btn" :key="locale">
         <router-link
           class="btn-floating btn-large blue"
           to="/record"
-          v-tooltip="'Создать новую запись'"
+          v-tooltip="'CreateNewRecord'"
           data-position="top"
         >
           <i class="large material-icons">add</i>
@@ -47,6 +47,9 @@ export default {
   computed: {
     error() {
       return this.$store.getters.error;
+    },
+    locale() {
+      return this.$store.getters.info.locale;
     }
   },
   watch: {
